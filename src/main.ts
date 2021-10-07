@@ -1,5 +1,12 @@
 import { ErrorMapper } from "utils/ErrorMapper";
 
+import * as Inscribe from "screeps-inscribe";
+
+
+import * as utils from "utils/utils";
+
+import { ConsoleCommands } from "utils/consolecommands";
+
 declare global {
   /*
     Example types, expand on these or remove them and add your own.
@@ -25,19 +32,25 @@ declare global {
   namespace NodeJS {
     interface Global {
       log: any;
+      cc: any
     }
   }
 }
 
 // When compiling TS to JS and bundling with rollup, the line numbers and file names in error messages change
 // This utility uses source maps to get the line numbers and file names of the original, TS source code
+console.log(`[${Inscribe.color("New Script loaded", "red")}]`);
+
 export const loop = ErrorMapper.wrapLoop(() => {
-  console.log(`Current game tick is ${Game.time}`);
+  // console.log(`Current game tick is ${Game.time}`);
+  global.cc = ConsoleCommands;
 
   // Automatically delete memory of missing creeps
   for (const name in Memory.creeps) {
     if (!(name in Game.creeps)) {
       delete Memory.creeps[name];
+      console.log(`[${Inscribe.color("Clearing non-existing creep memory: " + name, "red")}]`);
     }
   }
+  utils.log_info();
 });
