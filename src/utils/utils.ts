@@ -1,6 +1,7 @@
 import * as Inscribe from "screeps-inscribe";
 import * as Config from "settings/config";
 
+
 export function log_info() {
   // Periodic logging of useful info
   if (Game.time % 100 === 0) {
@@ -8,5 +9,15 @@ export function log_info() {
     console.log(
       `[${Inscribe.color(Config.roomName, "skyblue")}]| Game-Tick: ${Game.time}` + "| CPU Used: " + Game.cpu.getUsed()
     );
+  }
+}
+export function ClearNonExistingCreeMemory() {
+  if (Game.time % 100 === 0) {
+    for (const name in Memory.creeps) {
+      if (!(name in Game.creeps)) {
+        delete Memory.creeps[name];
+        console.log(`[${Inscribe.color("Clearing non-existing creep memory: " + name, "red")}]`);
+      }
+    }
   }
 }
