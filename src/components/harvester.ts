@@ -11,8 +11,9 @@ export function run(creep: Creep): void
         creep.moveTo(sources[0], {visualizePathStyle: {stroke: '#ffaa00'}});
         creep.harvest(sources[0]);
     } else {
-        let controller = creep.room.controller;
-
+        let tes = creep.room.controller?.pos as RoomPosition;
+        creep.moveTo(tes, {visualizePathStyle: {stroke: '#ffaa00'}});
+        creep.upgradeController(creep.room.controller as StructureController);
     }
 
 }

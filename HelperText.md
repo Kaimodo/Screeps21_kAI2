@@ -1,4 +1,8 @@
-Game.spawns["Spawn1"].spawnCreep([WORK,CARRY,MOVE,MOVE], "My First Creep");
+Game.spawns["Spawn1"].spawnCreep([WORK,CARRY,MOVE,MOVE], "My First Creep2");
+
+https://github.com/Clesoud/screeps/blob/master/Tutorials/02.%20Upgrading%20Controller%20*
+
+https://linguinecode.com/post/how-to-solve-typescript-possibly-undefined-value
 
 https://github.com/kurax/screeps/blob/master/src/main.ts
 
