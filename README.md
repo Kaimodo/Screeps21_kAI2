@@ -1,14 +1,18 @@
 
 # My screeps AI
+
 ![](https://screeps.com/images/logotype-animated.svg)
 
-# What me added:
+# What me added
+
 Screeps-Inscribe from ([resir014](https://github.com/resir014/screeps-inscribe))
 
 Logger from ([resir014](https://github.com/resir014/Stonehenge))
 
+Profiler_WIP from  ([resir014](https://github.com/resir014/Stonehenge))
 
 ## Console Commands
+
   Commands are defined in Consolecommands.ts
   Test if they work by typing in
   ```bash
@@ -18,7 +22,7 @@ Logger from ([resir014](https://github.com/resir014/Stonehenge))
 
 ## This is all WIP and there will be no guarantee that commited code is working ;)
 
-# Origin from here:
+# Origin from here
 
 # Screeps Typescript Starter
 
