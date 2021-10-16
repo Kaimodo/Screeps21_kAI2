@@ -29,7 +29,7 @@ export const roomName = Game.spawns.Spawn1.room.name;
 
 
 //Debug Mode
-import { LogLevels } from "utils/logger/logLevels";
+import { LogLevel } from "utils/logger/logLevel";
 
 /**
  * Enable this if you want a lot of text to be logged to console.
@@ -38,9 +38,14 @@ import { LogLevels } from "utils/logger/logLevels";
 export const ENABLE_DEBUG_MODE: boolean = true;
 
 /**
+ * Enable this to enable screeps profiler
+ */
+ export const USE_PROFILER: boolean = true
+
+/**
  * Debug level for log output
  */
- export const LOG_LEVEL: number = LogLevels.DEBUG;
+ export const LOG_LEVEL: number = LogLevel.DEBUG;
 
  /**
   * Prepend log output with current tick number.
@@ -63,25 +68,19 @@ export const ENABLE_DEBUG_MODE: boolean = true;
  export const LOG_MAX_PAD: number = 100;
 
  /**
-  * VSC location, used to create links back to source.
-  * Repo and revision are filled in at build time for git repositories.
-  */
- // export const LOG_VSC = { repo: "@@_repo_@@", revision: "@@_revision_@@", valid: false };
- export const LOG_VSC = { repo: "@@_repo_@@", revision: "@@__REVISION__@@", valid: false };
+ * VSC location, used to create links back to source.
+ * Repo and revision are filled in at build time for git repositories.
+ */
+export const LOG_VSC = { repo: '@@_repo_@@', revision: '@@_revision_@@', valid: false }
+//export const LOG_VSC = { repo: '@@_repo_@@', revision: __REVISION__, valid: false }
 
- /**
-  * URL template for VSC links, this one works for github and gitlab.
-  */
- export const LOG_VSC_URL_TEMPLATE = (path: string, line: string) =>
- {
-     return `${LOG_VSC.repo}/blob/${LOG_VSC.revision}/${path}#${line}`;
- };
-
-
+/**
+ * URL template for VSC links, this one works for github and gitlab.
+ */
+export const LOG_VSC_URL_TEMPLATE = (path: string, line: string) => {
+  return `${LOG_VSC.repo}/blob/${LOG_VSC.revision}/${path}#${line}`
+}
 
 // Creep COunter
 export const MANAGER_MAX_HARVESTERS: number = 3;
 export const MANAGER_MAX_UPGRADERS: number = 3;
-
-// Profiler
-export const __PROFILER_ENABLED__: boolean = true;

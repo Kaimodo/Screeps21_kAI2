@@ -1,5 +1,4 @@
 import * as Inscribe from "screeps-inscribe";
-// import * as M from "settings/Memory";
 
 const Colors = ["cyan", "red", "green", "yellow", "white", "purple", "pink", "orange"];
 

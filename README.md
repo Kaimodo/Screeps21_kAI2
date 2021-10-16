@@ -4,8 +4,10 @@
 
 # What me added:
 Screeps-Inscribe from ([resir014](https://github.com/resir014/screeps-inscribe))
-Screeps-typescript-profiler from ([screepers](https://github.com/screepers/screeps-typescript-profiler))
-Logger from ([KarateSnoopy](https://github.com/KarateSnoopy/LetsPlayScreeps))
+
+Logger from ([resir014](https://github.com/resir014/Stonehenge))
+
+
 ## Console Commands
   Commands are defined in Consolecommands.ts
   Test if they work by typing in
