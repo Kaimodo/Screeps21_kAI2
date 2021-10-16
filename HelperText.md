@@ -1,4 +1,94 @@
+Game.spawns["Spawn1"].spawnCreep([WORK,CARRY,MOVE,MOVE], "My First Creep");
 
+https://github.com/kurax/screeps/blob/master/src/main.ts
+
+https://github.com/Archheretic/screeps-ts/blob/main/src/Spawner.ts
+
+https://github.com/Wakkashamshay/screeps/blob/master/src/roleHarvester.ts
+
+https://github.com/Elbarae1921/screeps-bot/blob/master/src/spawns/actions/makeCreeps.ts
+
+R WEG
+https://github.com/stephenreynolds/screeps/blob/master/src/main.ts
+
+const enableProfiling = __SCRIPT_BRANCH__!.match("dev");
+setupProfiling();
+
+export const loop = ErrorMapper.wrapLoop(() => enableProfiling ? profiler.wrap(() => main()) : main());
+
+function main()
+{
+    global.cc = ConsoleCommands;
+    global.cc.profiler = Game.profiler;
+
+    const scheduler = new Scheduler();
+    scheduler.run();
+
+    getStats();
+}
+
+function getStats()
+{
+    Memory.stats["cpu.getUsed"] = Game.cpu.getUsed();
+    Memory.stats["cpu.limit"] = Game.cpu.limit;
+    Memory.stats["cpu.bucket"] = Game.cpu.bucket;
+    Memory.stats["gcl.progress"] = Game.gcl.progress;
+    Memory.stats["gcl.progressTotal"] = Game.gcl.progressTotal;
+    Memory.stats["gcl.level"] = Game.gcl.level;
+}
+
+function setupProfiling()
+{
+    if (enableProfiling)
+    {
+        profiler.enable();
+
+        profiler.registerClass(RoomPathFinder, "RoomPathFinder");
+        profiler.registerObject(CreepBuilder, "CreepBuilder");
+        profiler.registerObject(Utils, "Utils");
+
+        for (const processType in ProcessTypes)
+        {
+            const type = ProcessTypes[processType];
+            profiler.registerClass(type, type.name);
+        }
+    }
+}
+ENDE R WEG
+
+---------------------------------
+export const makeCreeps = () => {
+    const rooms = getRooms();
+    for (const room of rooms) {
+        for (const role of CREEP_ROLES_AND_PARTS) {
+            if (!role.need(getConstructionSites(room), getUsefulRuins(room))) {
+                continue;
+            }
+            const creeps = room.find(FIND_MY_CREEPS).filter(c => c.memory.role === role.role);
+            if (creeps.length < role.count) {
+                const spawns = room.find(FIND_MY_SPAWNS);
+                for (const spawn of spawns) {
+                    if (!spawn.spawning) {
+                        Memory.index = Memory.index ? Memory.index + 1 : 0;
+                        const body = creepBody(
+                            role.maxParts,
+                            role.parts,
+                            spawn.room.energyAvailable
+                        );
+                        const result = spawn.spawnCreep(body, `${role.role}_${Memory.index}`, {
+                            memory: { role: role.role }
+                        });
+                        if (result == 0) {
+                            break;
+                        }
+                    }
+                }
+                break;
+            }
+        }
+    }
+};
+-----------------------------------
 Aktuell loggger Bsp:
 log.info(`Started creating new creep: ${creepName}`)
     if (ENABLE_DEBUG_MODE) {

@@ -9,8 +9,6 @@ Screeps-Inscribe from ([resir014](https://github.com/resir014/screeps-inscribe))
 
 Logger from ([resir014](https://github.com/resir014/Stonehenge))
 
-Profiler_WIP from  ([resir014](https://github.com/resir014/Stonehenge))
-
 ## Console Commands
 
   Commands are defined in Consolecommands.ts

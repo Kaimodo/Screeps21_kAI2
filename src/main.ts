@@ -12,6 +12,8 @@ import * as utils from "utils/utils";
 
 import { ConsoleCommands } from "utils/consolecommands";
 
+import * as Roommanager from "components/roommanager";
+
 
 console.log(`[${Inscribe.color("New Script loaded", "red")}]`);
 
@@ -21,7 +23,8 @@ if (USE_PROFILER) {
 // Initialise logger memory.
 initLoggerMemory()
 
-export const loop = ErrorMapper.wrapLoop(() => {
+export const loop = ErrorMapper.wrapLoop(() =>
+{
 
   // console.log(`Current game tick is ${Game.time}`);
   global.cc = ConsoleCommands;
@@ -29,12 +32,12 @@ export const loop = ErrorMapper.wrapLoop(() => {
 
   //Test
 
-  log.info("Time: " + Game.time);
-  log.error("ErrorTest");
+  //log.info("Time: " + Game.time);
+  //log.error("ErrorTest");
 
 
   // MAIN Loop here?
-
+  Profiler.wrap(Roommanager.RoomLoop);
 
 
   // Automatically delete memory of missing creeps
