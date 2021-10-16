@@ -2,7 +2,8 @@ import { ErrorMapper } from "utils/ErrorMapper";
 
 import * as Inscribe from "screeps-inscribe";
 
-import * as Profiler from "utils/Profiler/profiler";
+
+import * as Profiler from "screeps-profiler";
 
 import { log, initLoggerMemory } from "utils/logger/logger";
 import { USE_PROFILER } from "settings/config";
@@ -15,7 +16,7 @@ import { ConsoleCommands } from "utils/consolecommands";
 console.log(`[${Inscribe.color("New Script loaded", "red")}]`);
 
 if (USE_PROFILER) {
-  Profiler.Enable();
+  Profiler.enable();
 }
 // Initialise logger memory.
 initLoggerMemory()
@@ -27,6 +28,7 @@ export const loop = ErrorMapper.wrapLoop(() => {
   // log.info(`loading revision: ${__REVISION__}`)
 
   //Test
+
   log.info("Time: " + Game.time);
   log.error("ErrorTest");
 
