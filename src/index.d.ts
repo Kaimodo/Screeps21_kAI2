@@ -1,3 +1,4 @@
+//import { Profiler } from "inspector";
 
 declare const __REVISION__: string
 interface Memory {
@@ -19,10 +20,11 @@ interface RoomMemory { [name: string]: any }
 declare namespace NodeJS {
     interface Global {
         cc: any;
+        Profiler: any;
         log: {
             level: number,
             showSource: boolean,
             showTick: boolean
-        }
+        };
     }
 }

@@ -4,28 +4,25 @@ import * as Inscribe from "screeps-inscribe";
 
 import * as Harvester from "components/harvester";
 
-export const RoomLoop = () => {
-    // Check memory for null or out of bounds custom objects
-    if (!Memory.uuid || Memory.uuid > 1000)
-    {
-        Memory.uuid = 0;
-    }
+import * as Upgrader from "components/upgrader";
 
-    for (const i in Game.rooms) {
-        const room: Room = Game.rooms[i];
-        run(room);
-    }
+/*
+export const RoomLoop = () => {
+
 }
+*/
 
 export function run(room: Room): any
 {
     // Main-Loop
-    logger.log.info("RoomManager run gestartet");
+    logger.log.info('Room "'+room.name+'" has '+Game.rooms[room.name].energyAvailable+' energy');
     for(const c in Game.creeps) {
         const creep: Creep = Game.creeps[c];
-        Harvester.run(creep);
+        if (creep.memory.role == "Harvester") {
+            Harvester.run(creep);
+        }else {
+            Upgrader.run(creep);
+        }
     }
-
-
 }
 
