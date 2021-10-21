@@ -6,8 +6,8 @@ import * as logger from "utils/logger/logger";
  */
 export function run(creep: Creep): void
 {
-    logger.log.info("Harvester run");
-    let TestCap = creep.store.getCapacity();
+    // logger.log.info("Harvester run");
+    // let TestCap = creep.store.getCapacity();
     // logger.log.debug("TestCap: "+ TestCap);
 
     if(creep.store.getFreeCapacity() > 0) {

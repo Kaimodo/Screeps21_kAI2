@@ -19,14 +19,18 @@ import { ENABLE_DEBUG_MODE } from "../settings/config";
 export function run(room: Room): any
 {
     // Main-Loop
-    logger.log.info('Room "'+room.name+'" has '+Game.rooms[room.name].energyAvailable+' energy');
+    // logger.log.info('Room "'+room.name+'" has '+Game.rooms[room.name].energyAvailable+' energy');
 
     // Calculate and Spawn Creeps
     var harvesters =_.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
     var builders =_.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
     var upgraders =_.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
 
-    logger.log.info(room.name + "| Har: " + harvesters.length + "| Bui: "+ builders.length + "| Upg: " + upgraders.length);
+    if (Game.time % 25 === 0) {
+        //logger.log.info(room.name + "| E: "+ Game.rooms[room.name].energyAvailable + "| Har: " + harvesters.length + "| Bui: "+ builders.length + "| Upg: " + upgraders.length +"|");
+        logger.log.info(Inscribe.color(room.name + "| E: "+ Game.rooms[room.name].energyAvailable + "| Har: " + harvesters.length + "| Bui: "+ builders.length + "| Upg: " + upgraders.length +"|", "skyblue"));
+    }
+
 
     if(Game.spawns['Spawn1'].spawning) {
         var spawningCreep = Game.creeps[Game.spawns['Spawn1'].spawning.name];

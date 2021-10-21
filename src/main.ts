@@ -18,7 +18,8 @@ import {ENABLE_DEBUG_MODE} from "settings/config";
 
 
 console.log(`[${Inscribe.color("New Script loaded", "red")}]`);
-
+// `[${Inscribe.color()}]`
+// log.info(Inscribe.color(room.name + "| E: "+ Game.rooms[room.name].energyAvailable + "| Har: " + harvesters.length + "| Bui: "+ builders.length + "| Upg: " + upgraders.length +"|", "red"));
 if (USE_PROFILER) {
   log.info("Profiler an: "+ USE_PROFILER);
   Profiler.enable();
@@ -40,7 +41,7 @@ export const loop = ErrorMapper.wrapLoop(() =>
     // Main Loop
     for (const i in Game.rooms) {
         const room: Room = Game.rooms[i];
-        log.info(room);
+        // log.info(room);
         Roommanager.run(room);
     }
 
