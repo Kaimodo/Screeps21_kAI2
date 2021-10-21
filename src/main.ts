@@ -14,6 +14,8 @@ import { ConsoleCommands } from "utils/consolecommands";
 
 import * as Roommanager from "components/roommanager";
 
+import {ENABLE_DEBUG_MODE} from "settings/config";
+
 
 console.log(`[${Inscribe.color("New Script loaded", "red")}]`);
 
