@@ -63,6 +63,7 @@ export function run(room: Room): any
                                             {memory: {role: 'upgrader',
                                             room: room.name}});
         }
+
         // Run Manager on Creep Roles
         if (creep.memory.role == "harvester") {
             Harvester.run(creep);
@@ -71,6 +72,7 @@ export function run(room: Room): any
         }else if (creep.memory.role == "builder") {
             Builder.run(creep);
         }
+
     }
 }
 

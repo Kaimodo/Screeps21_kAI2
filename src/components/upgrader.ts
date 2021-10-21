@@ -31,9 +31,9 @@ export function run(creep: Creep): void
     }
 
     if(creep.memory.working) {
-        let pos = creep.room.controller?.pos as RoomPosition;
+        //let pos = creep.room.controller?.pos as RoomPosition;
         if(creep.upgradeController(creep.room.controller as StructureController) == ERR_NOT_IN_RANGE){
-            creep.moveTo(pos)
+            creep.moveTo(creep.room.controller as StructureController)
         }
     } else {
         let source = creep.room.find(FIND_SOURCES);
