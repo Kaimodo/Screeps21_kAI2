@@ -27,6 +27,10 @@ export const MEMORY_VERSION = 1;
 // Room Name
 export const roomName = Game.spawns.Spawn1.room.name;
 
+// Creep COunter
+export const MANAGER_MAX_HARVESTERS: number = 2;
+export const MANAGER_MAX_UPGRADERS: number = 3;
+export const MANAGER_MAX_BUILDERS: number = 1;
 
 //Debug Mode
 import { LogLevel } from "utils/logger/logLevel";
@@ -81,6 +85,3 @@ export const LOG_VSC_URL_TEMPLATE = (path: string, line: string) => {
   return `${LOG_VSC.repo}/blob/${LOG_VSC.revision}/${path}#${line}`
 }
 
-// Creep COunter
-export const MANAGER_MAX_HARVESTERS: number = 3;
-export const MANAGER_MAX_UPGRADERS: number = 3;

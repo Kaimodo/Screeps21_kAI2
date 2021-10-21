@@ -9,7 +9,7 @@ interface Memory {
 interface CreepMemory {
     role: string;
     room: string;
-    working: boolean;
+    working?: boolean;
 }
 
 interface FlagMemory { [name: string]: any }

@@ -8,7 +8,7 @@ export function run(creep: Creep): void
 {
     logger.log.info("Harvester run");
     let TestCap = creep.store.getCapacity();
-    logger.log.debug("TestCap: "+ TestCap);
+    // logger.log.debug("TestCap: "+ TestCap);
 
     if (creep.store[RESOURCE_ENERGY] < creep.store.getCapacity()){
         let sources = creep.room.find(FIND_SOURCES);

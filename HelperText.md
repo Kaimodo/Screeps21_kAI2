@@ -4,15 +4,48 @@ Game.spawns['Spawn1'].spawnCreep([WORK, CARRY, MOVE, MOVE], 'Upgrader2' );
 Game.spawns['Spawn1'].spawnCreep([WORK, CARRY, MOVE, MOVE], 'Harvester1' );
 Game.spawns['Spawn1'].spawnCreep([WORK, CARRY, MOVE, MOVE], 'Harvester2' );
 
-Game.spawns['Spawn1'].spawnCreep([MOVE,CARRY,WORK,MOVE],'name1',{memory:{role:'Harvester'}});
-Game.spawns['Spawn1'].spawnCreep([MOVE,CARRY,WORK,MOVE],'nameX',{memory:{role:'Upgrader'}});
+Game.spawns['Spawn1'].spawnCreep([MOVE,CARRY,WORK,MOVE],'Harv1',{memory:{role:'Harvester'}});
+Game.spawns['Spawn1'].spawnCreep([MOVE,CARRY,WORK,MOVE],'Upg1',{memory:{role:'Upgrader'}});
 
 Game.creeps['Harvester1'].memory.role = 'harvester';
 Game.creeps['Upgrader1'].memory.role = 'upgrader';
 
+unicode-table.com
+
 BODYPARTS
 https://screeps.fandom.com/wiki/Creep#Body_Parts
 https://screepspl.us/services/creep-calculator/
+function bodyCost(body)
+{
+    let sum = 0;
+    for (let i in body)
+        sum += BODYPART_COST[body[i]];
+    return sum;
+}
+console.log(bodyCost([WORK, CARRY, MOVE]));
+
+// oneliner with lodash
+const bodyCost = _.sum([WORK,MOVE,CARRY], b => BODYPART_COST[b]);
+
+Building/screeps Planer
+https://screeps.admon.dev/building-planner
+
+Game.flags['Flag1'].pos.createConstructionSite(STRUCTURE_ROAD);
+Defense Basics
+function defendRoom(roomName) {
+    var hostiles = Game.rooms[roomName].find(FIND_HOSTILE_CREEPS);
+    if(hostiles.length > 0) {
+        var username = hostiles[0].owner.username;
+        Game.notify(`User ${username} spotted in room ${roomName}`);
+        var towers = Game.rooms[roomName].find(
+            FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER}});
+        towers.forEach(tower => tower.attack(hostiles[0]));
+    }
+}
+Tower rabge
+amount -= amount * C.TOWER_FALLOFF * (range - C.TOWER_OPTIMAL_RANGE) / (C.TOWER_FALLOFF_RANGE - C.TOWER_OPTIMAL_RANGE);
+
+https://docs.screeps.com/api/
 
 Priv server commands
 https://wiki.screepspl.us/index.php/Private_Server_Common_Tasks
