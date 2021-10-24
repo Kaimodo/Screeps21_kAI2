@@ -19,7 +19,8 @@
 +-------------------------------------------------------------------------------------+
 */
 
-
+// Revision
+// export declare const __REVISION__: string
 
 // Memory Version
 export const MEMORY_VERSION = 1;
@@ -28,9 +29,9 @@ export const MEMORY_VERSION = 1;
 export const roomName = Game.spawns.Spawn1.room.name;
 
 // Creep COunter
-export const MANAGER_MAX_HARVESTERS: number = 2;
+export const MANAGER_MAX_HARVESTERS: number = 1;
 export const MANAGER_MAX_UPGRADERS: number = 3;
-export const MANAGER_MAX_BUILDERS: number = 1;
+export const MANAGER_MAX_BUILDERS: number = 2;
 
 //Debug Mode
 import { LogLevel } from "utils/logger/logLevel";
