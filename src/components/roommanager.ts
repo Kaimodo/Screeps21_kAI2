@@ -4,6 +4,10 @@ import * as config from "../settings/config";
 
 import * as Inscribe from "screeps-inscribe";
 
+import * as TechLevel from "components/techlevel";
+
+import * as SpawnManager from "components/spawnmanager"
+
 import * as Harvester from "components/harvester";
 
 import * as Upgrader from "components/upgrader";
@@ -18,20 +22,15 @@ import { ENABLE_DEBUG_MODE } from "../settings/config";
  */
 export function run(room: Room): any
 {
-    // Main-Loop
-    // logger.log.info('Room "'+room.name+'" has '+Game.rooms[room.name].energyAvailable+' energy');
+    // Check TechLevel
+    let Roomlevel = TechLevel.getLevel(room);
 
-    // Calculate and Spawn Creeps
-    var harvesters =_.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
-    var builders =_.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
-    var upgraders =_.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
-
+    // Log Info
     if (Game.time % 25 === 0) {
-        //logger.log.info(room.name + "| E: "+ Game.rooms[room.name].energyAvailable + "| Har: " + harvesters.length + "| Bui: "+ builders.length + "| Upg: " + upgraders.length +"|");
-        logger.log.info(Inscribe.color(room.name + "| E: "+ Game.rooms[room.name].energyAvailable + "| Har: " + harvesters.length + "| Bui: "+ builders.length + "| Upg: " + upgraders.length +"|", "skyblue"));
+        logger.log.info(Inscribe.color(room.name + "| E: "+ Game.rooms[room.name].energyAvailable + "| Har: " + SpawnManager.harvesters.length + "| Bui: "+ SpawnManager.builders.length + "| Upg: " + SpawnManager.upgraders.length +"|", "skyblue"));
     }
 
-
+    // Visualize Spawning
     if(Game.spawns['Spawn1'].spawning) {
         var spawningCreep = Game.creeps[Game.spawns['Spawn1'].spawning.name];
         Memory.uuid++;
@@ -42,25 +41,8 @@ export function run(room: Room): any
             {align: 'left', opacity: 0.8});
       }
 
-    if(harvesters.length < config.MANAGER_MAX_HARVESTERS) {
-        var neName = room.name +'Har' + Memory.uuid;
-        Game.spawns['Spawn1'].spawnCreep([WORK,CARRY, MOVE, MOVE],
-                                        neName,
-                                        {memory: {role: 'harvester',
-                                        room: room.name}});
-    } else if(upgraders.length < config.MANAGER_MAX_UPGRADERS) {
-        var neName = room.name +'Upg' + Memory.uuid;
-        Game.spawns['Spawn1'].spawnCreep([WORK,CARRY, MOVE, MOVE],
-                                        neName,
-                                        {memory: {role: 'upgrader',
-                                        room: room.name}});
-    }else if(builders.length < config.MANAGER_MAX_BUILDERS) {
-        var neName = room.name +'Bui' + Memory.uuid;
-        Game.spawns['Spawn1'].spawnCreep([WORK,CARRY, MOVE, MOVE],
-                                        neName,
-                                        {memory: {role: 'builder',
-                                        room: room.name}});
-    }
+    // Spawn Creeps
+    SpawnManager.run(room);
 
     // Run Manager on Creep Roles
     for(const c in Game.creeps) {
@@ -72,7 +54,6 @@ export function run(room: Room): any
         }else if (creep.memory.role == "builder") {
             Builder.run(creep);
         }
-
     }
 }
 

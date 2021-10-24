@@ -16,7 +16,6 @@ import * as Roommanager from "components/roommanager";
 
 import {ENABLE_DEBUG_MODE} from "settings/config";
 
-
 console.log(`[${Inscribe.color("New Script loaded", "red")}]`);
 // `[${Inscribe.color()}]`
 // log.info(Inscribe.color(room.name + "| E: "+ Game.rooms[room.name].energyAvailable + "| Har: " + harvesters.length + "| Bui: "+ builders.length + "| Upg: " + upgraders.length +"|", "red"));
@@ -30,9 +29,7 @@ initLoggerMemory()
 export const loop = ErrorMapper.wrapLoop(() =>
 {
   Profiler.wrap(() => {
-    //console.log(`Current game tick is ${Game.time}`);
     global.cc = ConsoleCommands;
-    // log.info(`loading revision: ${__REVISION__}`)
 
     // Check memory for null or out of bounds custom objects
     if (!Memory.uuid || Memory.uuid > 1000) {
@@ -41,7 +38,6 @@ export const loop = ErrorMapper.wrapLoop(() =>
     // Main Loop
     for (const i in Game.rooms) {
         const room: Room = Game.rooms[i];
-        // log.info(room);
         Roommanager.run(room);
     }
 
